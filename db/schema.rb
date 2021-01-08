@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_004933) do
+ActiveRecord::Schema.define(version: 2021_01_08_021535) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
-    t.integer "upvotes"
-    t.integer "downvotes"
+    t.integer "upvotes", default: 0
+    t.integer "downvotes", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "game_id"
   end
 
   create_table "games", force: :cascade do |t|
     t.string "title"
-    t.integer "upvotes"
-    t.integer "downvotes"
+    t.integer "upvotes", default: 0
+    t.integer "downvotes", default: 0
     t.string "description"
     t.string "image_url"
-    t.date "date"
+    t.string "date"
   end
 
 end
