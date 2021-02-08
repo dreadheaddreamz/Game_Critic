@@ -1,8 +1,23 @@
 class CommentsController < ApplicationController
 
-    def create
-        comment = Comment.create(params[:content])
+    def index
+        @comments = Comment.all
+        render json: @comments
+    end
+
+    def show
+        comment = Comment.find_by_id(params[:id])
         render json: comment
+    end
+
+    def create
+        @comments = Game.new(game_params)
+        if !@comments.save
+          render json: {error: "We can't do that", status:400}          
+        else 
+          render json: @comments
+        end
+    end
     end
 
     def update
@@ -12,6 +27,6 @@ class CommentsController < ApplicationController
 
     def destroy
         comment = Comment.find_by(params[:id])
-        comment.delete
+        comment.destroy
+        render json: comment
     end
-end
