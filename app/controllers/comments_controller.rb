@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comments = Game.new(game_params)
+        @comments = Comment.new(content: params[:content], game_id: params[:game_id])
         if !@comments.save
           render json: {error: "We can't do that", status:400}          
         else 
@@ -28,5 +28,4 @@ class CommentsController < ApplicationController
     def destroy
         comment = Comment.find_by(params[:id])
         comment.destroy
-        render json: comment
     end
