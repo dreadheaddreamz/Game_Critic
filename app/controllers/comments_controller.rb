@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
+        binding.pry
         comment = Comment.find_by(params[:id])
         comment.destroy
     end
